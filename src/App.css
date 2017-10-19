@@ -1,3 +1,15 @@
+$primary-color: rgb(226, 81, 19);
+
+@import '~/loaders.css/src/animations/line-scale.scss'
+
+.loader-hidden {
+  display: none;
+}
+
+.loader-active {
+  display: block;
+}
+
 html, body, .root {
   height: 100%;
 }
