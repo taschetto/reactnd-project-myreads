@@ -1,15 +1,3 @@
-$primary-color: rgb(226, 81, 19);
-
-@import '~/loaders.css/src/animations/line-scale.scss'
-
-.loader-hidden {
-  display: none;
-}
-
-.loader-active {
-  display: block;
-}
-
 html, body, .root {
   height: 100%;
 }
@@ -113,6 +101,11 @@ body, .app {
 
 .search-books-results {
   padding: 80px 10px 20px;
+}
+
+.search-books-message {
+  text-align: center;
+  font-weight: bold;
 }
 
 /* books grid */
