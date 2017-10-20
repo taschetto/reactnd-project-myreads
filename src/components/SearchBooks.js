@@ -13,7 +13,6 @@ class SearchBooks extends Component {
   }
 
   state = {
-    results: [],
     typingTimeout: 0,
     isFetching: false
   }
@@ -21,34 +20,33 @@ class SearchBooks extends Component {
   handleKeyPress = event => {
     if (event.key === 'Enter') {
       const { value } = event.target
-      this.props.onUpdateQuery(value)
-      this.updateResults(value)
+      this.updateSearchResults(value)
     }
   }
 
-  updateResults = query => {
+  updateSearchResults = query => {
     if (this.state.typingTimeout) {
       clearTimeout(this.state.typingTimeout);
     }
 
     this.setState({
-      results: [],
       isFetching: true,
       typingTimeout: setTimeout(() => {
-        this.fetchResults(query)
+        this.fetchSearchResults(query)
       }, SEARCH_TIMEOUT_IN_MS)
     });
   }
 
-  fetchResults = query => {
-    BooksAPI.search(query, MAX_SEARCH_ITEMS).then(results => {
-      if (!results || results.hasOwnProperty('error')) results = []
-      this.setState({ results, isFetching: false })
+  fetchSearchResults = query => {
+    BooksAPI.search(query, MAX_SEARCH_ITEMS).then(searchResults => {
+      if (!searchResults || searchResults.hasOwnProperty('error')) searchResults = []
+      this.setState({ isFetching: false })
+      this.props.onUpdateSearch(query, searchResults)
     })
   }
 
   render() {
-    const { results } = this.state
+    const { query, searchResults } = this.props
 
     return (
       <div className="search-books">
@@ -62,14 +60,14 @@ class SearchBooks extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {results.length? (
+          {searchResults.length? (
             <ol className="books-grid">
-              {results.map(book => <li key={book.id}><Book book={book}/></li>)}
+              {searchResults.map(book => <li key={book.id}><Book book={book}/></li>)}
             </ol>
           ) : (
             <div className='search-books-message'>
               {this.state.isFetching?
-                'We\'re fetching your results. Please wait.'
+                'We\'re fetching your search results. Please wait.'
                 : 'Nothing to show here. Maybe you should search for other terms?'}
             </div>
           )}
