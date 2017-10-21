@@ -7,25 +7,21 @@ import './App.css'
 
 class BooksApp extends React.Component {
   state = {
-    query: '',
     searchResults: []
   }
 
-  updateSearch = (query, searchResults) => {
-    this.setState({ query, searchResults })
+  updateSearchResults = searchResults => {
+    this.setState({ searchResults })
   }
 
   render() {
-    const { query, searchResults } = this.state
     return (
       <div className='app'>
-        <Route path='/search' render={({ history }) => (
+        <Route path='/search' render={() => (
           <DocumentTitle title='Search - MyReads'>
             <SearchBooks
-              query={query}
-              searchResults={searchResults}
-              history={history}
-              onUpdateSearch={this.updateSearch} />
+              searchResults={this.state.searchResults}
+              onSearch={this.updateSearchResults} />
           </DocumentTitle>
         )} />
 
