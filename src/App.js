@@ -27,8 +27,8 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book) => {
-    let bookFound = this.state.books.find(b => b.id === book.id)
-    if (bookFound) {
+    let foundBook = this.state.books.find(b => b.id === book.id)
+    if (foundBook) {
       this.setState({
         books: this.state.books.map(b => {
           if (b.id !== book.id)
@@ -57,7 +57,9 @@ class BooksApp extends React.Component {
             </DocumentTitle>
           )} />
 
-        <Route exact path='/details/:bookId' component={BookDetails} />
+        <Route exact path='/details/:bookId' render={(props) => (
+            <BookDetails books={this.state.books} {...props} />
+          )} />
 
         <Route path='/search' render={() => (
           <DocumentTitle title='Search - MyReads'>
