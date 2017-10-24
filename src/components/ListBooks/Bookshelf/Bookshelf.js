@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Book from './Book'
+import Book from '../../Book/Book'
 
 class Bookshelf extends Component {
   render() {
@@ -11,7 +11,13 @@ class Bookshelf extends Component {
           <ol className="books-grid">
             {books && books.length? (
               <ol className='books-grid'>
-                {books.map(book => <li key={book.id}><Book book={book}/></li>)}
+                {books.map(book =>
+                  <li key={book.id}>
+                    <Book
+                      book={book}
+                      onUpdateShelf={this.props.onUpdateShelf} />
+                  </li>
+                )}
               </ol>
             ) : (
               <div className='search-books-message'>

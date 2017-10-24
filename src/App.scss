@@ -168,6 +168,27 @@ body, .app {
   cursor: pointer;
 }
 
+.book-details-link {
+  cursor: pointer;
+  position: absolute;
+  left: -10px;
+  bottom: -10px;
+}
+
+.book-details-link a {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $main-color;
+  background-image: url('./icons/eye.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+}
+
 /* book cover */
 
 .book-cover {
