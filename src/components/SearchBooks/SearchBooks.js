@@ -6,7 +6,7 @@ import * as BooksAPI from '../../utils/BooksAPI'
 
 import Book from '../Book/Book'
 
-import './SearchBooks'
+import './SearchBooks.css'
 
 const MAX_SEARCH_ITEMS = 20
 

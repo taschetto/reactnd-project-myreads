@@ -40,7 +40,7 @@ class BooksApp extends React.Component {
     } else {
       this.setState(previousState => {
         return {
-          books: previousState.books.push(book)
+          books: previousState.books.concat(book)
         }
       })
     }
