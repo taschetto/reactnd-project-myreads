@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+
 import Book from '../../Book/Book'
+
+import './Bookshelf.css'
 
 class Bookshelf extends Component {
   render() {

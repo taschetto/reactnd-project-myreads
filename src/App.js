@@ -2,13 +2,13 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 
+import * as BooksAPI from './utils/BooksAPI'
+
 import SearchBooks from './components/SearchBooks/SearchBooks'
 import ListBooks from './components/ListBooks/ListBooks'
 import BookDetails from './components/BookDetails/BookDetails'
 
-import * as BooksAPI from './utils/BooksAPI'
-
-import './App.css'
+import './styles/App.css'
 
 class BooksApp extends React.Component {
   state = {

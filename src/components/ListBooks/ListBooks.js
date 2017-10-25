@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import Header from './Header/Header'
 import Bookshelf from './Bookshelf/Bookshelf'
 
+import './ListBooks.css'
+
 class ListBooks extends Component {
   render() {
     const { books } = this.props

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import * as BooksAPI from '../../../utils/BooksAPI'
 
+import './BookshelfChanger.css'
+
 class BookshelfChanger extends Component {
   handleChange = event => {
     const book = this.props.book

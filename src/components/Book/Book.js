@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import BookshelfChanger from './BookshelfChanger/BookshelfChanger'
 
+import './Book.css'
+
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired

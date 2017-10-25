@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import './BookDetails.css'
+
 class BookDetails extends Component {
   render() {
     let foundBook = this.props.books.find(b => b.id === this.props.match.params.bookId)
