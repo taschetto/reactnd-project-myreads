@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+$primary-color: $main-color;
+
+@import '../../../node_modules/loaders.css/src/animations/line-scale.scss';
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}
