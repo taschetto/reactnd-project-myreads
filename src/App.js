@@ -12,12 +12,14 @@ import './styles/App.css'
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    isFetching: false
   }
 
   componentDidMount() {
+    this.setState({ isFetching: true })
     BooksAPI.getAll().then(books => {
-      this.setState({ books })
+      this.setState({ books, isFetching: false })
     })
   }
 
@@ -53,6 +55,7 @@ class BooksApp extends React.Component {
             <DocumentTitle title='MyReads'>
               <ListBooks
                 books={this.state.books}
+                isFetching={this.state.isFetching}
                 onUpdateShelf={this.updateShelf} />
             </DocumentTitle>
           )} />

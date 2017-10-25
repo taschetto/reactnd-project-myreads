@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Loader } from 'react-loaders'
 
 import Book from '../../Book/Book'
 
@@ -6,13 +7,17 @@ import './Bookshelf.css'
 
 class Bookshelf extends Component {
   render() {
-    const { books } = this.props
+    const { books, isFetching } = this.props
     return (
-      <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
-        <div className="bookshelf-books">
-          <ol className="books-grid">
-            {books && books.length? (
+      <div className='bookshelf'>
+        <h2 className='bookshelf-title'>{this.props.title}</h2>
+        <div className='bookshelf-books'>
+          {isFetching && (
+            <Loader type='ball-scale-multiple' />
+          )}
+
+          {!isFetching && (
+            books && books.length? (
               <ol className='books-grid'>
                 {books.map(book =>
                   <li key={book.id}>
@@ -23,11 +28,12 @@ class Bookshelf extends Component {
                 )}
               </ol>
             ) : (
-              <div className='search-books-message'>
-                Nothing to show here.
+              <div>
+                <div>Nothing to show here.</div>
+                <div className='sad'></div>
               </div>
-            )}
-          </ol>
+            )
+          )}
         </div>
       </div>
     )

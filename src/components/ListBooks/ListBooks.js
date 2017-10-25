@@ -21,14 +21,17 @@ class ListBooks extends Component {
             <Bookshelf
               title='Currently Reading'
               books={currentlyReading}
+              isFetching={this.props.isFetching}
               onUpdateShelf={this.props.onUpdateShelf} />
             <Bookshelf
               title='Want to Read'
               books={wantToRead}
+              isFetching={this.props.isFetching}
               onUpdateShelf={this.props.onUpdateShelf} />
             <Bookshelf
               title='Read'
               books={read}
+              isFetching={this.props.isFetching}
               onUpdateShelf={this.props.onUpdateShelf} />
           </div>
         </div>
