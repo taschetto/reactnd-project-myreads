@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Loader } from 'react-loaders'
-
 import Book from '../../Book/Book'
-
 import './Bookshelf.css'
 
 class Bookshelf extends Component {
   render() {
     const { books, isFetching } = this.props
+
     return (
       <div className='bookshelf'>
         <h2 className='bookshelf-title'>{this.props.title}</h2>

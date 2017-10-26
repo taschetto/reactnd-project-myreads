@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Loader } from 'react-loaders'
-
 import * as BooksAPI from '../../utils/BooksAPI'
-
 import './BookDetails.css'
 
 class BookDetails extends Component {
-
   state = {
     book: null,
     isFetching: false

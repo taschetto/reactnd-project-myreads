@@ -2,12 +2,11 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 
-import * as BooksAPI from './utils/BooksAPI'
-
+import BookDetails from './components/BookDetails/BookDetails'
 import SearchBooks from './components/SearchBooks/SearchBooks'
 import ListBooks from './components/ListBooks/ListBooks'
-import BookDetails from './components/BookDetails/BookDetails'
 
+import * as BooksAPI from './utils/BooksAPI'
 import './styles/App.css'
 
 class BooksApp extends React.Component {
@@ -33,9 +32,7 @@ class BooksApp extends React.Component {
     if (foundBook) {
       this.setState({
         books: this.state.books.map(b => {
-          if (b.id !== book.id)
-            return b
-
+          if (b.id !== book.id) return b
           return book
         })
       })
@@ -52,19 +49,19 @@ class BooksApp extends React.Component {
     return (
       <div className='app'>
         <Route exact path='/' render={() => (
-            <DocumentTitle title='MyReads'>
-              <ListBooks
-                books={this.state.books}
-                isFetching={this.state.isFetching}
-                onUpdateShelf={this.updateShelf} />
-            </DocumentTitle>
-          )} />
+          <DocumentTitle title='MyReads'>
+            <ListBooks
+              books={this.state.books}
+              isFetching={this.state.isFetching}
+              onUpdateShelf={this.updateShelf} />
+          </DocumentTitle>
+        )} />
 
         <Route exact path='/details/:bookId' render={(props) => (
-            <BookDetails
-              {...props}
-              onUpdateShelf={this.updateShelf} />
-          )} />
+          <BookDetails
+            {...props}
+            onUpdateShelf={this.updateShelf} />
+        )} />
 
         <Route path='/search' render={() => (
           <DocumentTitle title='Search - MyReads'>

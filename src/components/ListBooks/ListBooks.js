@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
 import Header from './Header/Header'
 import Bookshelf from './Bookshelf/Bookshelf'
-
 import './ListBooks.css'
 
 class ListBooks extends Component {
@@ -15,7 +13,9 @@ class ListBooks extends Component {
 
     return (
       <div className="list-books">
-        <Header />
+        <div className="list-books-title">
+          <h1>MyReads by taschetto</h1>
+        </div>
         <div className="list-books-content">
           <div>
             <Bookshelf

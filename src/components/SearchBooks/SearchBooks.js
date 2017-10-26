@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Debounce } from 'react-throttle'
 import { Loader } from 'react-loaders'
-
-import * as BooksAPI from '../../utils/BooksAPI'
-
 import Book from '../Book/Book'
-
+import * as BooksAPI from '../../utils/BooksAPI'
 import './SearchBooks.css'
 
 const MAX_SEARCH_ITEMS = 20
