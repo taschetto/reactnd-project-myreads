@@ -12,6 +12,7 @@ import './styles/App.css'
 class BooksApp extends React.Component {
   state = {
     books: [],
+    searchResults: [],
     isFetching: false
   }
 
@@ -27,7 +28,11 @@ class BooksApp extends React.Component {
     return foundBook ? foundBook.shelf : 'none'
   }
 
-  updateShelf = (book) => {
+  updateResults = searchResults => {
+    this.setState({ searchResults })
+  }
+
+  updateShelf = book => {
     let foundBook = this.state.books.find(b => b.id === book.id)
     if (foundBook) {
       this.setState({
@@ -66,6 +71,8 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <DocumentTitle title='Search - MyReads'>
             <SearchBooks
+              searchResults={this.state.searchResults}
+              onUpdateResults={this.updateResults}
               getBookshelf={this.getBookshelf}
               onUpdateShelf={this.updateShelf} />
           </DocumentTitle>

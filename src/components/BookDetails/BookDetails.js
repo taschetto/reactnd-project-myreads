@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Loader } from 'react-loaders'
+import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
 import * as BooksAPI from '../../utils/BooksAPI'
 import './BookDetails.css'
 
@@ -32,8 +33,28 @@ class BookDetails extends Component {
             book && (
               <div className="book-details">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
-                <div className="book-title">{book.title}</div>
-                <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
+                <div>
+                  <dl>
+                    <dt>Shelf</dt>
+                    <dd>
+                      <BookshelfChanger
+                        book={book}
+                        onUpdateShelf={this.props.onUpdateShelf} />
+                    </dd>
+                    <dt>Title</dt>
+                    <dd>{book.title}{book.subtitle? `: ${book.subtitle}` : ''}</dd>
+                    <dt>Author(s)</dt>
+                    <dd>{book.authors? book.authors.join(', ') : ''}</dd>
+                    <dt>Publisher</dt>
+                    <dd>{book.publisher}</dd>
+                    <dt>Pages</dt>
+                    <dd>{book.pageCount}</dd>
+                    <dt>ISBN10 / ISBN13</dt>
+                    <dd>{`${book.industryIdentifiers[0].identifier} / ${book.industryIdentifiers[1].identifier}`}</dd>
+                    <dt>Description</dt>
+                    <dd><p>{book.description}</p></dd>
+                  </dl>
+                </div>
               </div>
             )
           )}

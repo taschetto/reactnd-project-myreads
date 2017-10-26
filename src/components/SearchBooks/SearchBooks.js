@@ -10,7 +10,6 @@ const MAX_SEARCH_ITEMS = 20
 
 class SearchBooks extends Component {
   state = {
-    searchResults: [],
     isFetching: false
   }
 
@@ -23,15 +22,17 @@ class SearchBooks extends Component {
           return book
         })
 
-        this.setState({ searchResults: searchResultsWithShelves, isFetching: false })
+        this.props.onUpdateResults(searchResultsWithShelves)
+        this.setState({ isFetching: false })
       })
     } else {
-      this.setState({ searchResults: [] })
+      this.props.onUpdateResults([])
     }
   }
 
   render() {
-    const { searchResults, isFetching } = this.state
+    const { isFetching } = this.state
+    const { searchResults } = this.props
 
     return (
       <div className='search-books'>
