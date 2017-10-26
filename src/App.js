@@ -61,7 +61,9 @@ class BooksApp extends React.Component {
           )} />
 
         <Route exact path='/details/:bookId' render={(props) => (
-            <BookDetails {...props} />
+            <BookDetails
+              {...props}
+              onUpdateShelf={this.updateShelf} />
           )} />
 
         <Route path='/search' render={() => (

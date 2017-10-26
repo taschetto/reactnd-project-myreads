@@ -22,6 +22,7 @@ class BookDetails extends Component {
 
   render() {
     const { book, isFetching } = this.state
+
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
@@ -31,7 +32,13 @@ class BookDetails extends Component {
           {isFetching? (
             <Loader type='ball-scale-multiple' />
           ) : (
-            <h1>{book && (book.title)}</h1>
+            book && (
+              <div className="book-details">
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${book.imageLinks.smallThumbnail}")` }}></div>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
+              </div>
+            )
           )}
         </div>
       </div>

@@ -9,10 +9,9 @@ class BookshelfChanger extends Component {
     const book = this.props.book
     const shelf = event.target.value
 
-    BooksAPI.update(book, shelf).then(() => {
-      book.shelf = shelf
-      this.props.onUpdateShelf(book)
-    })
+    book.shelf = shelf
+    this.props.onUpdateShelf(book)
+    BooksAPI.update(book, shelf)
   }
 
   render() {

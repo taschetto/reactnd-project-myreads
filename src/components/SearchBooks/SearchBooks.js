@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Debounce } from 'react-throttle'
+import { Loader } from 'react-loaders'
 
 import * as BooksAPI from '../../utils/BooksAPI'
 
@@ -12,18 +13,20 @@ const MAX_SEARCH_ITEMS = 20
 
 class SearchBooks extends Component {
   state = {
-    searchResults: []
+    searchResults: [],
+    isFetching: false
   }
 
   updateQuery = query => {
     if (query.trim() !== '') {
+      this.setState({ isFetching: true })
       BooksAPI.search(query, MAX_SEARCH_ITEMS).then(searchResults => {
         let searchResultsWithShelves = searchResults.map(book => {
           book.shelf = this.props.getBookshelf(book)
           return book
         })
 
-        this.setState({ searchResults: searchResultsWithShelves })
+        this.setState({ searchResults: searchResultsWithShelves, isFetching: false })
       })
     } else {
       this.setState({ searchResults: [] })
@@ -31,7 +34,7 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { searchResults } = this.state
+    const { searchResults, isFetching } = this.state
 
     return (
       <div className='search-books'>
@@ -46,22 +49,32 @@ class SearchBooks extends Component {
             </Debounce>
           </div>
         </div>
-        <div className='search-books-results'>
-          {this.state.searchResults.length === 0 && (
-            <div className='search-books-message'>
-              Nothing to show here. Maybe you should search for other terms?
+
+        {isFetching && (
+          <Loader type='ball-scale-multiple' />
+        )}
+
+        {!isFetching && (
+          searchResults.length > 0 ? (
+            <div className='search-books-results'>
+              <ol className='books-grid'>
+                {searchResults.map(book =>
+                  <li key={book.id}>
+                    <Book
+                      book={book}
+                      onUpdateShelf={this.props.onUpdateShelf} />
+                  </li>
+                )}
+              </ol>
             </div>
-          )}
-          <ol className='books-grid'>
-            {searchResults.map(book =>
-              <li key={book.id}>
-                <Book
-                  book={book}
-                  onUpdateShelf={this.props.onUpdateShelf} />
-              </li>
-            )}
-          </ol>
-        </div>
+          ) : (
+            <div className='search-books-results'>
+              <div className='search-books-message'>
+                Nothing to show here. Maybe you should search for other terms?
+              </div>
+            </div>
+          )
+        )}
       </div>
     )
   }

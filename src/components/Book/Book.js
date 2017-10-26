@@ -15,19 +15,19 @@ class Book extends Component {
     const { id, title, authors, imageLinks } = this.props.book
 
     return (
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${imageLinks.smallThumbnail}")` }}></div>
-          <div className='book-details-link'>
-            <Link to={`/details/${id}`}>Book Details</Link>
+        <div className="book">
+          <div className="book-top">
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${imageLinks.smallThumbnail}")` }}></div>
+            <div className='book-details-link'>
+              <Link to={`/details/${id}`}>Book Details</Link>
+            </div>
+            <BookshelfChanger
+              book={this.props.book}
+              onUpdateShelf={this.props.onUpdateShelf} />
           </div>
-          <BookshelfChanger
-            book={this.props.book}
-            onUpdateShelf={this.props.onUpdateShelf} />
+          <div className="book-title">{title}</div>
+          <div className="book-authors">{authors && authors.join(', ')}</div>
         </div>
-        <div className="book-title">{title}</div>
-        <div className="book-authors">{authors && authors.join(', ')}</div>
-      </div>
     )
   }
 }
