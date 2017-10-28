@@ -42,8 +42,8 @@ class SearchBooks extends Component {
   }
 
   render() {
-    const { isFetching } = this.state
-    const { searchResults } = this.props
+    const { isFetching = true } = this.state
+    const { searchResults = [] } = this.props
 
     return (
       <div className='search-books'>

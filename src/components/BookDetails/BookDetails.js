@@ -26,12 +26,13 @@ class BookDetails extends Component {
   }
 
   render() {
-    const { book, isFetching } = this.state
+    const { book = [], isFetching = true } = this.state
 
     return (
       <div className='search-books'>
         <div className='search-books-bar'>
-          <Link to='/' className='close-search'>Close</Link>
+          <Link to='/' className='close-details'>Close</Link>
+          <div className='book-details-spacer'></div>
         </div>
         <div className='search-books-results'>
           <If condition={isFetching}>

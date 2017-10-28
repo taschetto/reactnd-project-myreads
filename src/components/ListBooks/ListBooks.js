@@ -29,7 +29,7 @@ class ListBooks extends Component {
       }
     ]
 
-    const { books } = this.props
+    const { books = [] } = this.props
 
     return (
       <div className='list-books'>

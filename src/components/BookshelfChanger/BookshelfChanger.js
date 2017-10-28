@@ -20,10 +20,10 @@ class BookshelfChanger extends Component {
   }
 
   render() {
-    const { shelf } = this.props.book
+    const { shelf = 'none' } = this.props.book
     return (
       <div className='book-shelf-changer'>
-        <select value={shelf || 'none'} onChange={this.handleChange}>
+        <select value={shelf} onChange={this.handleChange}>
           <option value='none' disabled>Move to...</option>
           <option value='currentlyReading'>Currently Reading</option>
           <option value='wantToRead'>Want to Read</option>
