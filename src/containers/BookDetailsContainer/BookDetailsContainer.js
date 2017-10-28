@@ -37,6 +37,7 @@ class BookDetailsContainer extends Component {
 
     return (
       <BookDetails
+        {...this.props}
         book={book}
         isFetching={isFetching}
         onUpdateShelf={onUpdateShelf} />

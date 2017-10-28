@@ -33,7 +33,6 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = updatedBook => {
-    console.log('updateShelf')
     this.setState(previousState => {
       let books = previousState.books.filter(book => book.id !== updatedBook.id)
       return {

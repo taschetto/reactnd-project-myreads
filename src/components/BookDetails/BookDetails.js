@@ -7,11 +7,18 @@ import { Loader } from 'react-loaders'
 import Book from '../Book/Book'
 import './BookDetails.css'
 
-const BookDetails = ({ book, isFetching, onUpdateShelf }) => {
+const BookDetails = ({ book, isFetching, onUpdateShelf, location }) => {
+  const getDestination = () => {
+    const { state } = location
+    const { fromSearch } = state
+    if (fromSearch) return '/search'
+    return '/'
+  }
+
   return (
     <div className='search-books'>
       <div className='search-books-bar'>
-        <Link to='/' className='close-details'>Close</Link>
+        <Link to={getDestination()} className='close-details'>Close</Link>
         <div className='book-details-spacer'></div>
       </div>
       <div className='search-books-results'>
