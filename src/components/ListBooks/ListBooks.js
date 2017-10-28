@@ -32,11 +32,11 @@ class ListBooks extends Component {
     const { books } = this.props
 
     return (
-      <div className="list-books">
-        <div className="list-books-title">
+      <div className='list-books'>
+        <div className='list-books-title'>
           <h1>MyReads by <a href='https://www.github.com/taschetto' target='_blank'>@taschetto</a></h1>
         </div>
-        <div className="list-books-content">
+        <div className='list-books-content'>
           {shelves.map(shelf => (
             <Bookshelf
               key={shelf.id}
@@ -46,7 +46,7 @@ class ListBooks extends Component {
               onUpdateShelf={this.props.onUpdateShelf} />
           ))}
         </div>
-        <div className="open-search">
+        <div className='open-search'>
           <Link to='/search'>Add a book</Link>
         </div>
       </div>

@@ -2,13 +2,19 @@
 
 .list-books-title {
   padding: 10px 0;
-  background: #3399FF;
+  background: $main-color;
   text-align: center; }
 
 .list-books-title h1 {
   font-weight: 400;
   margin: 0;
-  color: white; }
+  color: $background-color; }
+
+.list-books-title h1 a {
+  text-decoration: none;
+  color: $background-color;
+  font-weight: bold;
+}
 
 .list-books-content {
   padding: 0 0 80px;
