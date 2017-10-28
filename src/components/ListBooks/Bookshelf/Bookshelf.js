@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
 import { If, Then, Else } from 'react-if'
 import { Loader } from 'react-loaders'
-import Book from '../../Book/Book'
+import PropTypes from 'prop-types'
 
+import Book from '../../Book/Book'
 import './Bookshelf.css'
 
 class Bookshelf extends Component {
+
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    books: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    onUpdateShelf: PropTypes.func.isRequired
+  }
+
   render() {
     const { books, isFetching } = this.props
 

@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
+import PropTypes from 'prop-types'
 
+import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
 import './Book.css'
 
 class Book extends Component {
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    onUpdateShelf: PropTypes.func.isRequired
   }
 
   render() {

@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import { If, Then, Else } from 'react-if'
 import { Link } from 'react-router-dom'
 import { Loader } from 'react-loaders'
+import PropTypes from 'prop-types'
+
 import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
 import * as BooksAPI from '../../utils/BooksAPI'
-
 import './BookDetails.css'
 
 class BookDetails extends Component {
+  static propTypes = {
+    onUpdateShelf: PropTypes.func.isRequired
+  }
+
   state = {
     book: null,
     isFetching: false

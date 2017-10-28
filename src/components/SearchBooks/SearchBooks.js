@@ -3,14 +3,23 @@ import { Debounce } from 'react-throttle'
 import { If, Then, Else } from 'react-if'
 import { Link } from 'react-router-dom'
 import { Loader } from 'react-loaders'
+import PropTypes from 'prop-types'
+
 import Book from '../Book/Book'
 import * as BooksAPI from '../../utils/BooksAPI'
-
 import './SearchBooks.css'
 
 const MAX_SEARCH_ITEMS = 20
 
 class SearchBooks extends Component {
+
+  static propTypes = {
+    searchResults: PropTypes.array.isRequired,
+    onUpdateResults: PropTypes.func.isRequired,
+    getBookshelf: PropTypes.func.isRequired,
+    onUpdateShelf: PropTypes.func.isRequired
+  }
+
   state = {
     isFetching: false
   }
