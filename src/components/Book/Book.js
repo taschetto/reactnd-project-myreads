@@ -1,35 +1,38 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { If, Then, Else } from 'react-if'
 
-import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
-import './Book.css'
+import BasicBook from './BasicBook/BasicBook'
+import DetailedBook from './DetailedBook/DetailedBook'
 
-class Book extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    onUpdateShelf: PropTypes.func.isRequired
-  }
+const Book = ({ mode, book, onUpdateShelf, fromSearch }) => {
 
-  render() {
-    const { id, title, authors, imageLinks } = this.props.book
+  return (
+    <If condition={mode === 'simple'}>
+      <Then>
+        <BasicBook
+          book={book}
+          onUpdateShelf={onUpdateShelf}
+          fromSearch={fromSearch} />
+      </Then>
+      <Else>
+        <DetailedBook
+          book={book}
+          onUpdateShelf={onUpdateShelf}
+          fromSearch={fromSearch} />
+      </Else>
+    </If>
+  )
+}
 
-    return (
-        <div className="book">
-          <div className="book-top">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${imageLinks.smallThumbnail}")` }}></div>
-            <div className='book-details-link'>
-              <Link to={`/details/${id}`}>Book Details</Link>
-            </div>
-            <BookshelfChanger
-              book={this.props.book}
-              onUpdateShelf={this.props.onUpdateShelf} />
-          </div>
-          <div className="book-title">{title}</div>
-          <div className="book-authors">{authors && authors.join(', ')}</div>
-        </div>
-    )
-  }
+Book.defaultProps = {
+  mode: 'simple'
+}
+
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+  onUpdateShelf: PropTypes.func.isRequired,
+  fromSearch: PropTypes.bool
 }
 
 export default Book

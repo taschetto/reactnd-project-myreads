@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '../../../styles/variables';
 
 .book {
   width: 140px;
@@ -6,12 +6,12 @@
 
 .book-title,
 .book-authors {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .book-title {
   margin-top: 15px;
-  font-size: 1em;
+  font-size: 1.25em;
   font-weight: bold;
   color: $foreground-color;
 }
@@ -35,5 +35,5 @@
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 1.25em;
 }

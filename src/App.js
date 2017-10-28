@@ -2,25 +2,16 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 
-import BookDetails from './components/BookDetails/BookDetails'
-import SearchBooks from './components/SearchBooks/SearchBooks'
-import ListBooks from './components/ListBooks/ListBooks'
+import BookDetailsContainer from './containers/BookDetailsContainer/BookDetailsContainer'
+import ListBooksContainer from './containers/ListBooksContainer/ListBooksContainer'
+import SearchBooksContainer from './containers/SearchBooksContainer/SearchBooksContainer'
 
-import * as BooksAPI from './utils/BooksAPI'
 import './styles/App.css'
 
 class BooksApp extends React.Component {
   state = {
     books: [],
-    searchResults: [],
-    isFetching: false
-  }
-
-  componentDidMount() {
-    this.setState({ isFetching: true })
-    BooksAPI.getAll().then(books => {
-      this.setState({ books, isFetching: false })
-    })
+    searchResults: []
   }
 
   getBookshelf = book => {
@@ -28,26 +19,22 @@ class BooksApp extends React.Component {
     return foundBook ? foundBook.shelf : 'none'
   }
 
+  updateBooks = books => {
+    this.setState({ books })
+  }
+
   updateResults = searchResults => {
     this.setState({ searchResults })
   }
 
-  updateShelf = book => {
-    let foundBook = this.state.books.find(b => b.id === book.id)
-    if (foundBook) {
-      this.setState({
-        books: this.state.books.map(b => {
-          if (b.id !== book.id) return b
-          return book
-        })
-      })
-    } else {
-      this.setState(previousState => {
-        return {
-          books: previousState.books.concat(book)
-        }
-      })
-    }
+  updateShelf = updatedBook => {
+    console.log('updateShelf')
+    this.setState(previousState => {
+      let books = previousState.books.filter(book => book.id !== updatedBook.id)
+      return {
+        books: books.concat(updatedBook)
+      }
+    })
   }
 
   render() {
@@ -55,25 +42,27 @@ class BooksApp extends React.Component {
       <div className='app'>
         <Route exact path='/' render={() => (
           <DocumentTitle title='MyReads'>
-            <ListBooks
+            <ListBooksContainer
               books={this.state.books}
-              isFetching={this.state.isFetching}
+              onUpdateBooks={this.updateBooks}
               onUpdateShelf={this.updateShelf} />
           </DocumentTitle>
         )} />
 
         <Route exact path='/details/:bookId' render={(props) => (
-          <BookDetails
-            {...props}
-            onUpdateShelf={this.updateShelf} />
+          <DocumentTitle title='Details - MyReads'>
+            <BookDetailsContainer
+              {...props}
+              onUpdateShelf={this.updateShelf} />
+          </DocumentTitle>
         )} />
 
         <Route path='/search' render={() => (
           <DocumentTitle title='Search - MyReads'>
-            <SearchBooks
+            <SearchBooksContainer
               searchResults={this.state.searchResults}
-              onUpdateResults={this.updateResults}
               getBookshelf={this.getBookshelf}
+              onUpdateResults={this.updateResults}
               onUpdateShelf={this.updateShelf} />
           </DocumentTitle>
         )} />

@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '../../../styles/variables';
 
 .book-shelf-changer {
   position: absolute;
@@ -8,7 +8,7 @@
   height: 40px;
   border-radius: 50%;
   background: $main-color;
-  background-image: url('../../icons/arrow-drop-down.svg');
+  background-image: url('../../../icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
