@@ -26,8 +26,6 @@ const DetailedBook = ({ book, onUpdateShelf, fromSearch }) => {
           <dd>{book.publisher}</dd>
           <dt>Pages</dt>
           <dd>{book.pageCount}</dd>
-          <dt>ISBN10 / ISBN13</dt>
-          <dd>{`${book.industryIdentifiers[0].identifier} / ${book.industryIdentifiers[1].identifier}`}</dd>
         </dl>
       </div>
     </div>

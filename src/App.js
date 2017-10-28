@@ -11,7 +11,8 @@ import './styles/App.css'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    searchResults: []
+    searchResults: [],
+    bookCache: []
   }
 
   getBookshelf = book => {
@@ -25,6 +26,10 @@ class BooksApp extends React.Component {
 
   updateResults = searchResults => {
     this.setState({ searchResults })
+  }
+
+  updateCache = bookCache => {
+    this.setState({ bookCache })
   }
 
   updateShelf = updatedBook => {
@@ -53,6 +58,8 @@ class BooksApp extends React.Component {
           <DocumentTitle title='Details - MyReads'>
             <BookDetailsContainer
               {...props}
+              bookCache={this.state.bookCache}
+              onUpdateCache={this.updateCache}
               onUpdateShelf={this.updateShelf} />
           </DocumentTitle>
         )} />

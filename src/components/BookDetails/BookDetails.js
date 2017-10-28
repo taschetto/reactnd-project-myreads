@@ -34,7 +34,7 @@ const BookDetails = ({ book, isFetching, onUpdateShelf }) => {
 }
 
 BookDetails.propTypes = {
-  book: PropTypes.object.isRequired,
+  book: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   onUpdateShelf: PropTypes.func.isRequired
 }

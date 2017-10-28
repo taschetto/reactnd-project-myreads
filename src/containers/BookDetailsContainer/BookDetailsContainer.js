@@ -6,6 +6,8 @@ import * as BooksAPI from '../../utils/BooksAPI'
 
 class BookDetailsContainer extends Component {
   static propTypes = {
+    bookCache: PropTypes.array.isRequired,
+    onUpdateCache: PropTypes.func.isRequired,
     onUpdateShelf: PropTypes.func.isRequired
   }
 
@@ -15,10 +17,18 @@ class BookDetailsContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isFetching: true })
-    BooksAPI.get(this.props.match.params.bookId).then(book => {
-      this.setState({ book, isFetching: false })
-    })
+    const bookId = this.props.match.params.bookId
+    const book = this.props.bookCache.find(book => book.id === bookId)
+
+    if (book) {
+      this.setState({ book })
+    } else {
+      this.setState({ isFetching: true })
+      BooksAPI.get(bookId).then(book => {
+        this.setState({ book, isFetching: false })
+        this.props.onUpdateCache(this.props.bookCache.concat(book))
+      })
+    }
   }
 
   render() {

@@ -16,11 +16,13 @@ class ListBooksContainer extends Component {
   }
 
   componentDidMount() {
-    this.setState({ isFetching: true })
-    BooksAPI.getAll().then(books => {
-      this.setState({ isFetching: false })
-      this.props.onUpdateBooks(books)
-    })
+    if (this.props.books.length === 0) {
+      this.setState({ isFetching: true })
+      BooksAPI.getAll().then(books => {
+        this.setState({ isFetching: false })
+        this.props.onUpdateBooks(books)
+      })
+    }
   }
 
   render() {
