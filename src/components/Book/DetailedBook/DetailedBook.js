@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
-import './DetailedBook.css'
+import '../Book.css'
 
 const DetailedBook = ({ book, onUpdateShelf, fromSearch }) => {
   return (

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
-import './BasicBook.css'
+import '../Book.css'
 
 const BasicBook = ({ book, onUpdateShelf, fromSearch }) => {
 

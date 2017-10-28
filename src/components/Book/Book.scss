@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import '../../styles/variables';
 
 .book {
   width: 140px;
@@ -36,4 +36,17 @@
   padding: 20px 10px 0;
   text-align: center;
   font-size: 1.25em;
+}
+
+.columnsContainer { position: relative; margin: .5em; }
+
+.leftColumn, .rightColumn {  padding: 1.25em; }
+
+.leftColumn { margin-bottom: .5em; }
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 47.5em ) {
+  .leftColumn { margin-right: 19.5em; }
+
+	.rightColumn { position: absolute; top: 0; right: 0; width: 18.75em; }
 }
