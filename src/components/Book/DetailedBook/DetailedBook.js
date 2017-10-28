@@ -5,9 +5,6 @@ import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
 import './DetailedBook.css'
 
 const DetailedBook = ({ book, onUpdateShelf, fromSearch }) => {
-
-  const { id, title, authors, imageLinks } = book
-
   return (
     <div className='columnsContainer'>
       <div className='leftColumn'>
@@ -18,7 +15,7 @@ const DetailedBook = ({ book, onUpdateShelf, fromSearch }) => {
       <div className='rightColumn'>
         <div className='book'>
           <div className='book-top'>
-            <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url('${imageLinks.smallThumbnail}')` }}></div>
+            <div className='book-cover' style={{ width: 128, height: 193, backgroundImage: `url('${book.imageLinks.smallThumbnail}')` }}></div>
             <BookshelfChanger
               book={book}
               onUpdateShelf={onUpdateShelf} />

@@ -5,10 +5,10 @@ import { If, Then, Else } from 'react-if'
 import BasicBook from './BasicBook/BasicBook'
 import DetailedBook from './DetailedBook/DetailedBook'
 
-const Book = ({ mode, book, onUpdateShelf, fromSearch }) => {
+const Book = ({ detailed, book, onUpdateShelf, fromSearch }) => {
 
   return (
-    <If condition={mode === 'simple'}>
+    <If condition={!detailed}>
       <Then>
         <BasicBook
           book={book}
@@ -26,7 +26,7 @@ const Book = ({ mode, book, onUpdateShelf, fromSearch }) => {
 }
 
 Book.defaultProps = {
-  mode: 'simple'
+  detailed: false
 }
 
 Book.propTypes = {

@@ -24,7 +24,7 @@ const BookDetails = ({ book, isFetching, onUpdateShelf }) => {
               <Book
                 book={book}
                 onUpdateShelf={onUpdateShelf}
-                mode='detailed' />
+                detailed={true} />
             )}
           </Else>
         </If>
