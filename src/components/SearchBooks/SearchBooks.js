@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Debounce } from 'react-throttle'
+import { If, Then, Else } from 'react-if'
+import { Link } from 'react-router-dom'
 import { Loader } from 'react-loaders'
 import Book from '../Book/Book'
 import * as BooksAPI from '../../utils/BooksAPI'
+
 import './SearchBooks.css'
 
 const MAX_SEARCH_ITEMS = 20
@@ -48,31 +50,35 @@ class SearchBooks extends Component {
           </div>
         </div>
 
-        {isFetching && (
-          <Loader type='ball-scale-multiple' />
-        )}
-
-        {!isFetching && (
-          searchResults.length > 0 ? (
-            <div className='search-books-results'>
-              <ol className='books-grid'>
-                {searchResults.map(book =>
-                  <li key={book.id}>
-                    <Book
-                      book={book}
-                      onUpdateShelf={this.props.onUpdateShelf} />
-                  </li>
-                )}
-              </ol>
-            </div>
-          ) : (
-            <div className='search-books-results'>
-              <div className='search-books-message'>
-                Nothing to show here. Maybe you should search for other terms?
-              </div>
-            </div>
-          )
-        )}
+        <If condition={isFetching}>
+          <Then>
+            <Loader type='ball-scale-multiple' />
+          </Then>
+          <Else>
+            <If condition={searchResults.length > 0}>
+              <Then>
+                <div className='search-books-results'>
+                  <ol className='books-grid'>
+                    {searchResults.map(book =>
+                      <li key={book.id}>
+                        <Book
+                          book={book}
+                          onUpdateShelf={this.props.onUpdateShelf} />
+                      </li>
+                    )}
+                  </ol>
+                </div>
+              </Then>
+              <Else>
+                <div className='search-books-results'>
+                  <div className='search-books-message'>
+                    Nothing to show here. Maybe you should search for other terms?
+                  </div>
+                </div>
+              </Else>
+            </If>
+          </Else>
+        </If>
       </div>
     )
   }

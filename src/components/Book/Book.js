@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import BookshelfChanger from '../BookshelfChanger/BookshelfChanger'
+
 import './Book.css'
 
 class Book extends Component {
