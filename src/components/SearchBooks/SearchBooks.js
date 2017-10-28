@@ -28,6 +28,7 @@ class SearchBooks extends Component {
     if (query.trim() !== '') {
       this.setState({ isFetching: true })
       BooksAPI.search(query, MAX_SEARCH_ITEMS).then(searchResults => {
+        if (searchResults.error) searchResults = []
         let searchResultsWithShelves = searchResults.map(book => {
           book.shelf = this.props.getBookshelf(book)
           return book
